@@ -1,0 +1,60 @@
+   /* navigation and dropdown */
+    .site-navigation .site-menu {
+                width: 100%;
+                /*background-color: white;*/
+                /* 마진 패딩 지정하지 않으면 브라우저 기본 스타일을 따라 설정되므로 오버라이딩 필요 */
+                margin: 0;
+                padding: 0;
+            }
+            /* li 는 블록요소인데 inline-block 으로 인라인속성 부여해서 나란히 배치*/
+            .site-navigation .site-menu .dropdown {
+                display: inline-block;
+            }
+         
+         .dropdown {
+                position: relative;
+            }
+
+            .nav-link {
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                /*box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);*/
+            }
+            
+            .dropdown-menu li {
+                border-bottom: 1px solid #efefef;
+            }
+
+            .dropdown .dropdown-menu  a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                
+            }
+
+            /* dropdown-menu 에는 hover 적용이 안됨 */
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu li:hover {
+            	background-color: #f1f1f1;
+            	font-weight: bold;
+            }
+
+            .nav-link:hover:not{
+                background-color: white;
+                color: black;
+            }
+
+    /* End-navigation and dropdown */

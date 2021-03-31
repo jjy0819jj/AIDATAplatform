@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statistic">
+<select id="getAvgRank" resultType="statisticDTO" parameterType="java.util.Map">
+		select  
+		LEFT(script_nm, 2) AS name,
+		avg(a.duration) AS duration
+		from 
+		atam_load_data a, 
+		atam_project b, 
+		atam_user_app c, 
+		atam_script d, 
+		atam_script_dtl e, 
+		atam_dom f, 
+		atam_user g 
+		WHERE a.user_app_seq  = c.user_app_seq
+		AND c.project_seq = b.project_seq
+		AND a.user_app_seq = d.user_app_seq
+		AND a.script_seq = d.script_seq
+		AND d.script_seq = e.script_seq 
+		AND a.script_dtl_seq = e.script_dtl_seq
+		AND e.dom_key_seq = f.dom_key_seq
+		AND b.user_seq = g.user_seq
+		AND d.script_nm like #{category}
+		AND date_format(a.start_date, '%Y-%m-%d') >= #{startDate}
+		AND NOT date_format(a.start_date, '%Y-%m-%d') > #{endDate}
+		AND NOT a.duration > 15000
+		AND NOT f.scene_title like '홈화면'
+		AND NOT f.scene_title like '화면'
+		AND NOT a.file_type in ('T', 'Z')
+		AND NOT f.scene_title like '%크롬종료%'
+		GROUP BY name
+		ORDER BY duration
+</select>
+
+<insert id="commentInsert" parameterType="CommentDTO">
+		insert into statistics_comment (name, content, category, reply_level, reply_seq, logtime) 
+		values (#{name}, #{content}, #{category}, 0, 0, default);
+</insert>
+
+<select id="getCommentList" resultType="CommentDTO" parameterType="int">
+		select 
+		name, content, logtime
+		from statistics_comment
+		where category=#{cg}
+		order by seq desc;
+</select>
+	
+	
+</mapper>
+
+
+
+

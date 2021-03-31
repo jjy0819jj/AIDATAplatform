@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+	<select id="getTotalPlay" resultType="String">
+	 select FORMAT(count(*), 0) as cnt from atam_load_data
+	</select>
+	
+	<select id="getTotalError" resultType="String">
+	 select FORMAT(count(*), 0) as cnt from atam_load_data where duration > 0 and (file_type in ('T', 'Z') or duration > 15000)
+	</select>
+	
+	
+	
+</mapper>

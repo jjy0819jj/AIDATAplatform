@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+	<insert id="memberJoin" parameterType="memberDTO">
+		insert into member(name,email,pwd,tel,tel2,tel3,startwork,addr) values  
+		(#{name}, #{email}, #{pwd}, #{tel}, #{tel2}, #{tel3},sysdate,#{addr})
+	</insert>
+	<select id="memberView" parameterType="string" resultType="memberDTO">
+		select * from member where email=#{email, jdbcType=VARCHAR}
+	</select>
+	<select id="getTotalA" resultType="int">
+		select count(*) as cnt from member
+	</select>
+	<select id="memberList" parameterType="java.util.Map" resultType="memberDTO">
+		<![CDATA[select name, email, pwd, tel, tel2, tel3,member_code,addr,file_name,resumehit,
+		to_char(startwork, 'YYYY.MM.DD') as startwork from 
+		(select rownum rn, tt.* from 
+		(select * from member order by member_code asc) tt)  
+		where rn>=#{startNum} and rn<=#{endNum}]]>
+	</select>
+	<update id="memberUpdate" parameterType="memberDTO">
+		update member set pwd=#{pwd},tel=#{tel},tel2=#{tel2},tel3=#{tel3},member_code=#{member_code},addr=#{addr}
+		where email=#{email, jdbcType=VARCHAR}
+	</update>
+	<delete id="memberDelete" parameterType="String">
+	  delete member where email=#{email}
+	</delete>
+	
+	<update id="fileUpload" parameterType="memberDTO">
+		update member set file_name=#{file_name} where email=#{email}
+	</update>
+	
+	<select id="getTotalB" resultType="int">
+		select count(*) as cnt from member where resumeHit = 0 and file_name != '없음'
+	</select>
+	
+	<select id="getTotalnewUsers" parameterType="String" resultType="int">
+	 select count(*) as cnt from member where to_char(startwork, 'YYYY.MM.DD') = #{day}
+	</select>
+	
+	<update id="resumeHit" parameterType="memberDTO">
+		update member set resumehit = resumehit + 1 where file_name=#{file_name} and email = #{email}
+	</update>
+	
+	<select id="memberResumeList" resultType="memberDTO">
+		select * from member where resumehit = 0 and file_name != '없음' order by member_code asc
+	</select>
+</mapper>
+
+
+
+

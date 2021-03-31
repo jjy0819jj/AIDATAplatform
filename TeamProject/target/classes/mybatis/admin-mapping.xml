@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+	<insert id="insertCoronaAvg" parameterType="coronaAvgDTO">
+		insert into statistics_corona_avg values  
+		(#{keydate}, #{total_avg}, #{seoul_avg}, #{gyeonggi_avg}, #{incheon_avg}, #{busan_avg}, #{daejeon_avg}, #{daegu_avg}, #{ulsan_avg}, #{gwangju_avg})
+	</insert>
+	
+	<select id="getTotalAvg" resultType="int">
+	 select  
+			round(avg(a.duration)) as duration
+		from 
+			atam_load_data a, 
+			atam_project b, 
+			atam_user_app c, 
+			atam_script d, 
+			atam_script_dtl e, 
+			atam_dom f, 
+			atam_user g 
+		WHERE 
+			a.user_app_seq  = c.user_app_seq
+			AND c.project_seq = b.project_seq
+			AND a.user_app_seq = d.user_app_seq
+			AND a.script_seq = d.script_seq
+			AND d.script_seq = e.script_seq 
+			AND a.script_dtl_seq = e.script_dtl_seq
+			AND e.dom_key_seq = f.dom_key_seq
+			AND b.user_seq = g.user_seq
+			AND 
+			(f.scene_title like '서울_%'
+			OR
+			f.scene_title like '경기_%'
+			OR
+			f.scene_title like '광주_%'
+			OR
+			f.scene_title like '대구_%'
+			OR
+			f.scene_title like '대전_%'
+			OR
+			f.scene_title like '울산_%'
+			OR
+			f.scene_title like '인천_%'
+			OR
+			f.scene_title like '부산_%'
+			)
+			AND date_format(a.start_date, '%Y-%m-%d') >= #{startDate}
+			AND NOT date_format(a.start_date, '%Y-%m-%d') > #{endDate}
+			AND NOT a.duration > 15000
+			AND NOT a.file_type in ('T', 'Z')
+	</select>
+	
+	<select id="getSelectAvg" resultType="int" parameterType="String">
+		select  
+			round(avg(a.duration)) as duration
+		from 
+			atam_load_data a, 
+			atam_project b, 
+			atam_user_app c, 
+			atam_script d, 
+			atam_script_dtl e, 
+			atam_dom f, 
+			atam_user g 
+		WHERE 
+			a.user_app_seq  = c.user_app_seq
+			AND c.project_seq = b.project_seq
+			AND a.user_app_seq = d.user_app_seq
+			AND a.script_seq = d.script_seq
+			AND d.script_seq = e.script_seq 
+			AND a.script_dtl_seq = e.script_dtl_seq
+			AND e.dom_key_seq = f.dom_key_seq
+			AND b.user_seq = g.user_seq
+			AND 
+			f.scene_title like #{string}
+			AND date_format(a.start_date, '%Y-%m-%d') = '2020-08-27'
+			AND NOT a.duration > 15000
+			AND NOT a.file_type in ('T', 'Z')
+	</select>
+</mapper>
+
+
+
+
