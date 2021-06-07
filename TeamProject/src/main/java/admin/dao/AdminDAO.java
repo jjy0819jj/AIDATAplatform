@@ -8,28 +8,23 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import admin.bean.coronaAvgDTO;
+import admin.bean.usersDTO;
 
 
 @Repository
 public class AdminDAO {
 	@Autowired
     private SqlSessionTemplate sqlSession;
-	
 
-	public int totalAvg(String startDate, String endDate) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("startDate", startDate);
-		map.put("endDate", endDate);
-		return sqlSession.selectOne("admin.getTotalAvg", map);
+	public List<usersDTO> getusersList(int startNum, int endNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		return sqlSession.selectList("admin.getusersList", map);
 	}
 
-	public int selectAvg(String string) {
-		return sqlSession.selectOne("admin.getSelectAvg", string);
-	}
-
-	public int insertCoronaAvg(coronaAvgDTO dto) {
-		return sqlSession.insert("admin.insertCoronaAvg", dto);
+	public int getUserTotal() {
+		return sqlSession.selectOne("getUserTotal");
 	}
 	
 }

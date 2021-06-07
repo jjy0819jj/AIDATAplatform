@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="statistic.bean.statisticDTO" alias="statisticDTO"/>
 		<typeAlias type="statistic.bean.CommentDTO" alias="CommentDTO"/>
-		<typeAlias type="admin.bean.coronaAvgDTO" alias="coronaAvgDTO"/>
+		<typeAlias type="admin.bean.usersDTO" alias="usersDTO"/>
 	</typeAliases>
 	
 

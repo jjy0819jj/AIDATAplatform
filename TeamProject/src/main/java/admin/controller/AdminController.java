@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import admin.bean.coronaAvgDTO;
+import admin.bean.usersDTO;
 
 @Controller
 public class AdminController {
@@ -20,6 +21,31 @@ public class AdminController {
 	@Autowired
 	private AdminService service;
 	
+	@RequestMapping(value="userList.do")
+	public ModelAndView userList(HttpServletRequest request) {
+		int pg = 1;
+		int endNum = pg * 10;
+		int startNum = endNum - 9;
+		List<usersDTO> usersList = service.getusersList(startNum, endNum);
+		int totalA = service.getUserTotal();  
+		int totalP = (totalA + 9) / 10;
+		
+		int startPage = (pg-1)/3*3 + 1;
+		int endPage = startPage + 2;
+		if(endPage > totalP) endPage = totalP;
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pg", pg);
+		mv.addObject("nav", "userList");
+		mv.addObject("usersList",usersList);
+		mv.addObject("totalP",totalP);
+		mv.addObject("startPage",startPage);
+		mv.addObject("endPage",endPage);
+		mv.setViewName("userList.jsp");
+		return mv;
+	}
+	
+	/*
 	@RequestMapping(value="admin.do")
 	public ModelAndView coronaInsert(HttpServletRequest request) {
 
@@ -43,7 +69,7 @@ public class AdminController {
 		mv.setViewName("admin.jsp");
 		return mv;
 	}
-	/*
+	
 	@RequestMapping(value="statistics1.do")
 	public ModelAndView statistics1(HttpServletRequest request) {
 		SimpleDateFormat format = new SimpleDateFormat ("yyyy-MM-dd");

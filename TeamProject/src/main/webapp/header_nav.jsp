@@ -37,7 +37,7 @@
           <!-- Nav items -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="dashboard.html">
+              <a class="nav-link active" href="index.do">
                 <i class="fas fa-home text-blue"></i>
                 <span class="nav-link-text">HOME</span>
               </a>
@@ -50,7 +50,7 @@
             </li>
             
 			<li class="nav-item">
-              <a class="nav-link" href="userList.html">
+              <a class="nav-link" href="userList.do">
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">사용자 관리</span>
               </a>

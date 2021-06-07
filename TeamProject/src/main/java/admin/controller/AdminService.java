@@ -2,14 +2,11 @@ package admin.controller;
 
 import java.util.List;
 
-import admin.bean.coronaAvgDTO;
+import admin.bean.usersDTO;
 
 public interface AdminService {
+	public List<usersDTO> getusersList(int startNum, int endNum);
 
-	public int totalAvg(String startDate, String endDate);
-
-	public int selectAvg(String string);
-
-	public int insertCoronaAvg(coronaAvgDTO dto);
+	public int getUserTotal();
 	
 }

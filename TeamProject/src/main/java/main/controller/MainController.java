@@ -15,11 +15,7 @@ public class MainController {
 	@RequestMapping(value="index.do")
 	public ModelAndView index(HttpServletRequest request) {
 
-		String totalPlay = service.totalPlay();
-		String totalError = service.totalError();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("totalPlay",totalPlay);
-		mv.addObject("totalError",totalError);
 		mv.setViewName("index.jsp");
 		return mv;
 	}
