@@ -8,6 +8,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="statistic.bean.statisticDTO" alias="statisticDTO"/>
 		<typeAlias type="statistic.bean.CommentDTO" alias="CommentDTO"/>
 		<typeAlias type="admin.bean.usersDTO" alias="usersDTO"/>
+		<typeAlias type="dataset.bean.datasetDTO" alias="datasetDTO"/>
+		<typeAlias type="dataset.bean.dataDTO" alias="dataDTO"/>
 	</typeAliases>
 	
 
@@ -16,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mybatis/main-mapping.xml"/>
 		<mapper resource="mybatis/admin-mapping.xml"/>
 		<mapper resource="mybatis/statistic-mapping.xml"/>
+		<mapper resource="mybatis/dataset-mapping.xml"/>
 	</mappers>
 	
 </configuration>

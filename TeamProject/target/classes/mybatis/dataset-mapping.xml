@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dataset">
+	<insert id="dataSetInsert" parameterType="datasetDTO" useGeneratedKeys="true" keyProperty="dno">
+		insert into dataset (sno, filename, size, length, record, topic, gender, age, bigo, totaldata, logtime) values
+		(#{sno}, #{filename}, #{size}, #{length}, #{record}, #{topic}, #{gender}, #{age}, #{bigo}, #{totaldata}, sysdate())
+	</insert>
+	
+	<insert id="dataInsert" parameterType="dataDTO">
+		insert into data (dno, filename, size, length) values
+		(#{dno}, #{filename}, #{size}, #{length})
+	</insert>
+	
+	<select id="getDatasetList" resultType="datasetDTO" parameterType="java.util.Map">
+		<![CDATA[select cc.*
+		from (select @rownum := @rownum+1 as rn, tt.*
+		from (select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata
+		 from dataset a, users b where a.sno = b.sno) tt, (SELECT @rownum:=0) R order by logtime desc) cc where rn>=#{startNum} and rn<=#{endNum}]]>
+	</select>
+	
+	<select id="getDatasetTotal" resultType="int" parameterType="String">
+		select count(*) as cnt from dataset
+	</select>
+	
+	<select id="getdatasetInfo" resultType="datasetDTO" parameterType="int">
+		select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata
+		from dataset a, users b
+		where a.dno = #{dno}
+		and a.sno = b.sno;
+	</select>
+	
+	<select id="getdataList" resultType="dataDTO" parameterType="int">
+		select a.*, b.name as ins_name, b.tel as ins_tel
+		from data a LEFT JOIN users b
+		ON a.inspector = b.sno
+		where a.dno = #{dno}
+		order by a.dno desc;
+	</select>
+	
+	<update id="dataInspect" parameterType="java.util.Map">
+		UPDATE data
+		SET status=#{inspect_Num}, inspector=#{session_no}
+		WHERE datano = #{datano};
+	</update>
+	
+	<select id="getdataCnt" resultType="java.util.Map" parameterType="int">
+		select status, count(*) as cnt from data where dno=#{dno} group by status
+	</select>
+	
+</mapper>
+
+
+
+

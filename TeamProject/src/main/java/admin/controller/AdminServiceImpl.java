@@ -26,4 +26,10 @@ public class AdminServiceImpl implements AdminService{
 	public int getUserTotal() {
 		return dao.getUserTotal();
 	}
+
+
+	@Override
+	public usersDTO getuserInfo(int sno) {
+		return dao.getuserInfo(sno);
+	}
 }

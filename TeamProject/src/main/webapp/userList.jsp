@@ -131,10 +131,11 @@
 							</th>
 							<td>
 							  <div class="avatar-group">
-								<a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="관리자">
-								  <img alt="Image placeholder" src="../assets/img/theme/team-1.jpg">
-								</a>
-							  </div>
+									<a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-html="true"
+									data-original-title="${vo.name }<br>(${vo.tel })">
+										<i class="ni ni-circle-08"></i>
+									</a>
+								</div>
 							</td>
 							<td>${vo.name}</td>
 							<td>${vo.logtime}</td>

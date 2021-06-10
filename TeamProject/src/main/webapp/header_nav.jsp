@@ -19,6 +19,10 @@
   <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="css/argon.css?v=1.2.0" type="text/css">
+  <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -43,7 +47,7 @@
               </a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link" href="tables.html">
+              <a class="nav-link" href="datasetList.do">
                 <i class="ni ni-bullet-list-67 text-red"></i>
                 <span class="nav-link-text">데이터셋</span>
               </a>

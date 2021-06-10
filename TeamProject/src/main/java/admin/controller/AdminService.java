@@ -8,5 +8,7 @@ public interface AdminService {
 	public List<usersDTO> getusersList(int startNum, int endNum);
 
 	public int getUserTotal();
+
+	public usersDTO getuserInfo(int sno);
 	
 }

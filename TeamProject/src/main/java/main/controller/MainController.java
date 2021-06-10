@@ -1,11 +1,15 @@
 package main.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import admin.bean.usersDTO;
 @Controller
 public class MainController {
 	
@@ -20,6 +24,37 @@ public class MainController {
 		return mv;
 	}
 	
+	@RequestMapping(value="login.do")
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+		
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		
+		ModelAndView mv = new ModelAndView();
+		usersDTO userInfo = service.login(id, pwd);
+		if (userInfo == null) {
+			mv.setViewName("login.jsp");
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("Session_sno", userInfo.getSno());
+			session.setAttribute("Session_id", userInfo.getId());
+			session.setAttribute("Session_name", userInfo.getName());
+			session.setAttribute("Session_rank", userInfo.getRank());
+			mv.setViewName("index.jsp");			
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value="logout.do")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("login.jsp");
+		return mv;
+	}
+	
+	
+	/*
 	@RequestMapping(value="dashboard.do")
 	public ModelAndView dashboard(HttpServletRequest request) {
 		System.out.println(request.getHeader("user-agent"));
@@ -43,6 +78,7 @@ public class MainController {
 		mv.setViewName("dashboard.jsp");
 		return mv;
 	}
+	*/
 }
 
 

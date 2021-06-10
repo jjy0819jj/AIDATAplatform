@@ -26,5 +26,9 @@ public class AdminDAO {
 	public int getUserTotal() {
 		return sqlSession.selectOne("getUserTotal");
 	}
+
+	public usersDTO getuserInfo(int sno) {
+		return sqlSession.selectOne("getuserInfo", sno);
+	}
 	
 }

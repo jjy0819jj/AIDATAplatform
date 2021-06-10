@@ -4,6 +4,7 @@ package main.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import admin.bean.usersDTO;
 import main.dao.MainDAO;
 
 @Service
@@ -35,5 +36,10 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public int selectAvg(String string) {
 		return mainDAO.selectAvg(string);
+	}
+
+	@Override
+	public usersDTO login(String id, String pwd) {
+		return null;
 	}
 }

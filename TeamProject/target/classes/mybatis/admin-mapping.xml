@@ -14,6 +14,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) as cnt from users
 	</select>
 	
+	<select id="getuserInfo" resultType="usersDTO" parameterType="int">
+		select * from users where sno = #{sno};
+	</select>
+	
 </mapper>
 
 
