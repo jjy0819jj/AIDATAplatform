@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
  
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <!-- HEADER==================================== -->	
@@ -54,7 +55,6 @@
                     <th scope="col" width="10%">소음환경</th>
                     <th scope="col" width="10%">대화주제</th>
 					<th scope="col" width="20%">검수진행정도</th>
-					<th scope="col" width="5%">상태</th>
 					<th scope="col" width="5%">작성자</th>
 					<th scope="col" width="10%">업로드 일시</th>
                   </tr>
@@ -106,29 +106,32 @@
 					</td>
 					
 					<td>
-						${vo.compdata }/${vo.totaldata }
-						<div class="d-flex align-items-center">
-	                        <div>
-	                            <div class="progress">
-	                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: ${vo.compdata/vo.totaldata*100 }%;"></div>
+						<div class="row">
+							<div class="col-9" align="left">
+								<span style="color: black;">
+								<c:choose>
+								<c:when test="${vo.compdata+vo.faildata == 0 }">0</c:when>
+								<c:otherwise>
+								<fmt:formatNumber value="${(vo.compdata+vo.faildata)/vo.totaldata*100 }" pattern=".00"/>
+								</c:otherwise>
+								</c:choose>%
+								</span>
+							</div>
+							<div class="col-3" align="right">
+								${vo.compdata+vo.faildata }/${vo.totaldata }
+							</div>
+						</div>
+						<div class="row">
+	                        <div class="col-12">
+	                            <div class="progress" style="width: 100%; height: 30px;">
+	                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+	                                aria-valuemax="100" style="width: ${vo.compdata/vo.totaldata*100 }%;"></div>
+	                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" 
+	                                aria-valuemax="100" style="width: ${vo.faildata/vo.totaldata*100 }%;"></div>
 	                            </div>
 	                        </div>
-	                        <c:choose>
-							<c:when test="${vo.compdata == 0 }">0</c:when>
-							<c:otherwise>
-							<fmt:formatNumber value="${vo.compdata/vo.totaldata*100 }" pattern=".00"/>
-							</c:otherwise>
-							</c:choose>
-							%
 	                    </div>
 					</td>
-
-                    <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-secondary"></i>
-                        <span class="status">대기중</span>
-                      </span>
-                    </td>
 
 					<td>
 						<div class="avatar-group">
@@ -140,11 +143,11 @@
 					</td>
 
 					<td>
-						${vo.logtime }
+					<c:set var="TextValue" value="${vo.logtime}"/>
+					${fn:substring(TextValue,0,10) }
+					<br>
+					${fn:substring(TextValue,11,16) }
                     </td>
-
-					
-
                   </tr>
                 </c:forEach>
                 </tbody>
@@ -197,6 +200,7 @@
           </div>
         </div>
       </div>
+    </div>
       <!-- Dark table
       <div class="row">
         <div class="col">

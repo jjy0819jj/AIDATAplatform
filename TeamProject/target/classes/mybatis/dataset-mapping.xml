@@ -16,7 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getDatasetList" resultType="datasetDTO" parameterType="java.util.Map">
 		<![CDATA[select cc.*
 		from (select @rownum := @rownum+1 as rn, tt.*
-		from (select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata
+		from (select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata, 
+		(select count(*) from data where a.dno = dno AND STATUS=2) AS faildata
 		 from dataset a, users b where a.sno = b.sno) tt, (SELECT @rownum:=0) R order by logtime desc) cc where rn>=#{startNum} and rn<=#{endNum}]]>
 	</select>
 	
@@ -25,17 +26,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getdatasetInfo" resultType="datasetDTO" parameterType="int">
-		select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata
+		select a.*, b.name, b.tel, (select count(*) from data where a.dno = dno AND status=1) as compdata, 
+		(select count(*) from data where a.dno = dno AND STATUS=2) AS faildata
 		from dataset a, users b
 		where a.dno = #{dno}
 		and a.sno = b.sno;
 	</select>
 	
-	<select id="getdataList" resultType="dataDTO" parameterType="int">
+	<select id="getdataList" resultType="dataDTO" parameterType="java.util.Map">
 		select a.*, b.name as ins_name, b.tel as ins_tel
 		from data a LEFT JOIN users b
 		ON a.inspector = b.sno
 		where a.dno = #{dno}
+		AND (status = #{chkwaiting} OR status = #{chkcomplete} OR status = #{chkcompanion})
 		order by a.dno desc;
 	</select>
 	

@@ -37,8 +37,8 @@ public class DatasetServiceImpl implements DatasetService{
 		return dao.getdatasetInfo(dno);
 	}
 	@Override
-	public List<dataDTO> getdataList(int dno) {
-		return dao.getdataList(dno);
+	public List<dataDTO> getdataList(Map<String, Integer> map) {
+		return dao.getdataList(map);
 	}
 	@Override
 	public int dataInspect(int datano, int inspect_Num, int session_no) {

@@ -81,7 +81,15 @@ public class DatasetController {
 	
 	@RequestMapping(value="datasetList.do")
 	public ModelAndView datasetList(HttpServletRequest request) {
+		String str_pg = request.getParameter("pg");
 		int pg = 1;
+		if (str_pg != null) {
+			if (!str_pg.equals("")) {
+				if (str_pg.matches("^[0-9]*$")) {
+					pg = Integer.parseInt(str_pg);
+				}
+			}
+		}
 		int endNum = pg * 10;
 		int startNum = endNum - 9;
 		List<datasetDTO> datasetList = service.getDatasetList(startNum, endNum);
@@ -107,13 +115,37 @@ public class DatasetController {
 	public ModelAndView datasetInfo(HttpServletRequest request) {
 		String Sdno = request.getParameter("dno");
 		int dno = Integer.parseInt(Sdno);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("dno", dno);
+		map.put("chkwaiting", 0);
+		map.put("chkcomplete", 1);
+		map.put("chkcompanion", 2);
 		datasetDTO datasetDTO = service.getdatasetInfo(dno);
-		List<dataDTO> dataList = service.getdataList(dno);
+		List<dataDTO> dataList = service.getdataList(map);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("nav", "datasetList");
 		mv.addObject("vo", datasetDTO);
 		mv.addObject("dataList", dataList);
 		mv.setViewName("datasetInfo.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="dataList.do")
+	public ModelAndView dataList(HttpServletRequest request) {
+		String Sdno = request.getParameter("dno");
+		int dno = Integer.parseInt(Sdno);
+		int chkwaiting = Integer.parseInt(request.getParameter("chkwaiting"));
+		int chkcomplete = Integer.parseInt(request.getParameter("chkcomplete"));
+		int chkcompanion = Integer.parseInt(request.getParameter("chkcompanion"));
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("dno", dno);
+		if (chkwaiting == 1) map.put("chkwaiting", 0); else map.put("chkwaiting", null);
+		if (chkcomplete == 1) map.put("chkcomplete", 1); else map.put("chkcomplete", null);
+		if (chkcompanion == 1) map.put("chkcompanion", 2); else map.put("chkcompanion", null);
+		List<dataDTO> dataList = service.getdataList(map);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("dataList", dataList);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	

@@ -19,7 +19,7 @@ public interface DatasetService {
 
 	public datasetDTO getdatasetInfo(int dno);
 
-	public List<dataDTO> getdataList(int dno);
+	public List<dataDTO> getdataList(Map<String, Integer> map);
 
 	public int dataInspect(int datano, int inspect_Num, int session_no);
 

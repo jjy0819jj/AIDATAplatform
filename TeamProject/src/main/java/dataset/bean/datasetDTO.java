@@ -11,6 +11,7 @@ public class datasetDTO {
 	int gender;
 	int age;
 	int compdata;
+	int faildata;
 	int totaldata;
 	String bigo;
 	String logtime;
@@ -105,6 +106,12 @@ public class datasetDTO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public int getFaildata() {
+		return faildata;
+	}
+	public void setFaildata(int faildata) {
+		this.faildata = faildata;
 	}
 	
 }

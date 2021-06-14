@@ -41,8 +41,8 @@ public class datasetDAO {
 		return sqlSession.selectOne("dataset.getdatasetInfo", dno);
 	}
 
-	public List<dataDTO> getdataList(int dno) {
-		return sqlSession.selectList("dataset.getdataList", dno);
+	public List<dataDTO> getdataList(Map<String, Integer> map) {
+		return sqlSession.selectList("dataset.getdataList", map);
 	}
 
 	public int dataInspect(int datano, int inspect_Num, int session_no) {

@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import admin.bean.usersDTO;
+import dataset.bean.dataDTO;
+import dataset.bean.datasetDTO;
 
 @Controller
 public class AdminController {
@@ -42,6 +46,16 @@ public class AdminController {
 		mv.addObject("startPage",startPage);
 		mv.addObject("endPage",endPage);
 		mv.setViewName("userList.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="getuserInfo.do")
+	public ModelAndView getuserInfo(HttpServletRequest request) {
+		int sno = Integer.parseInt(request.getParameter("sno"));
+		usersDTO userInfo = service.getuserInfo(sno);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("userInfo", userInfo);
+		mv.setViewName("jsonView");
 		return mv;
 	}
 	
