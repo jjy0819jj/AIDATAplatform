@@ -17,8 +17,8 @@ public class AdminServiceImpl implements AdminService{
 	private AdminDAO dao;
 
 	@Override
-	public List<usersDTO> getusersList(int startNum, int endNum) {
-		return dao.getusersList(startNum, endNum);
+	public List<usersDTO> getusersList() {
+		return dao.getusersList();
 	}
 
 
@@ -31,5 +31,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public usersDTO getuserInfo(int sno) {
 		return dao.getuserInfo(sno);
+	}
+
+
+	@Override
+	public List<usersDTO> getusersList(int startNum, int endNum) {
+		return dao.getusersList(startNum, endNum);
 	}
 }

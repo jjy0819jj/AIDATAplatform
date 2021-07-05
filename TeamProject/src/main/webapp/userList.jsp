@@ -29,7 +29,7 @@
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col-12 text-right">
-                  <a href="userInsert.jsp" class="btn btn-sm btn-primary">새계정 생성</a>
+                  <a href="userUpload.do" class="btn btn-sm btn-primary">새계정 생성</a>
                 </div>
               </div>
             </div>
@@ -38,7 +38,7 @@
 				  <table class="table align-items-center table-flush"> 
 					<thead class="thead-light">
 					  <tr>
-						<th scope="col" width="10%">권한</th>
+						<th scope="col" width="10%">직함</th>
 						<th scope="col" width="15%"></th>
 						<th scope="col" width="10%">이름</th>
 						<th scope="col" width="10%">가입일시</th>
@@ -47,34 +47,78 @@
 					  </tr>
 					</thead>
 					<tbody class="list">
-					<c:forEach var="vo" items="${usersList }">
-						<tr onClick="userInfo(this, ${vo.sno});">
-							<th scope="row">
-								<c:choose>
-								<c:when test="${vo.rank ==0 }">관리자</c:when>
-								<c:when test="${vo.rank ==1 }">수집자</c:when>
-								<c:when test="${vo.rank ==2 }">정제자</c:when>
-								<c:when test="${vo.rank ==3 }">책임자</c:when>
-								</c:choose>
-							</th>
-							<td>
-							  <div class="avatar-group">
-									<a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-html="true"
-									data-original-title="${vo.name }<br>(${vo.tel })">
-										<i class="ni ni-circle-08"></i>
-									</a>
-								</div>
-							</td>
-							<td>${vo.name}</td>
-							<td>${vo.logtime}</td>
-							<td>-</td>
-							<td>-</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="vo" items="${usersList }">
+							<tr onClick="userInfo(this, ${vo.sno});">
+								<th scope="row">
+									<c:choose>
+									<c:when test="${vo.rank ==0 }">관리자</c:when>
+									<c:when test="${vo.rank ==1 }">크라우드워커</c:when>
+									<c:when test="${vo.rank ==2 }">직원</c:when>
+									<c:when test="${vo.rank ==3 }">책임자</c:when>
+									</c:choose>
+								</th>
+								<td>
+								  <div class="avatar-group">
+										<a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-html="true"
+										data-original-title="${vo.name }<br>(${vo.tel })">
+											<i class="ni ni-circle-08"></i>
+										</a>
+									</div>
+								</td>
+								<td>${vo.name}</td>
+								<td>${vo.logtime}</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+						</c:forEach>
 					</tbody>
               </table>
             </div>
 				
+            </div>
+            <!-- Card footer -->
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                <!---------------------- 이전 ---------------------->
+                <c:if test="${startPage>3 }">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="userList.do?pg=${startPage - 1 }" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                </c:if>
+                <!------------------------------------------------>
+                
+                <!---------------------- 페이지 ---------------------->
+                <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+                <c:if test="${pg == i }">
+                  <li class="page-item active">
+                    <a class="page-link" href="userList.do?pg=${i }">${i }</a><span class="sr-only">(current)</span>
+                  </li>
+                </c:if>
+                <c:if test="${pg != i }">
+                  <li class="page-item">
+                    <a class="page-link" href="userList.do?pg=${i }">${i }</a>
+                  </li>
+                </c:if>
+                </c:forEach>
+                <!------------------------------------------------>
+                  
+                  
+                <!---------------------- 다음 ---------------------->
+                <c:if test="${endPage<totalP }">
+                  <li class="page-item">
+                    <a class="page-link" href="userList.do?pg=${endPage + 1 }">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </c:if>
+                <!------------------------------------------------>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
@@ -82,6 +126,19 @@
 		
 		
 <script>
+$(document).ready(function(){
+	var html = '';
+	var userlist = '<c:out value="${usersList}"/>';
+	
+	userlist.each(function(index, item){
+		alert(item.name);
+	});
+	
+	
+	
+})
+
+
 
 var userInfo = function(id, sno) {
 	$('tr').css("background-color", "#FFFFFF");

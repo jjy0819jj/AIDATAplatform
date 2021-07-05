@@ -187,7 +187,7 @@
                 <!---------------------- 다음 ---------------------->
                 <c:if test="${endPage<totalP }">
                   <li class="page-item">
-                    <a class="page-link" href="#">
+                    <a class="page-link" href="datasetList.do?pg=${endPage + 1 }">
                       <i class="fas fa-angle-right"></i>
                       <span class="sr-only">Next</span>
                     </a>

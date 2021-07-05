@@ -112,11 +112,11 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">성별</label>
                         <div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value=1 name="gender">
+						  <input type="radio" id="customRadio1" class="custom-control-input" value=1 name="gender">
 						  <label class="custom-control-label" for="customRadio1">남자</label>
 						</div>
 						<div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value=2 name="gender">
+						  <input type="radio" id="customRadio2" class="custom-control-input" value=2 name="gender">
 						  <label class="custom-control-label" for="customRadio2">여자</label>
 						</div>
                       </div>
@@ -125,16 +125,39 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">연령대</label>
                         <div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio4" name="customRadio2" class="custom-control-input" value=1 name="age">
+						  <input type="radio" id="customRadio4" class="custom-control-input" value=1 name="age">
 						  <label class="custom-control-label" for="customRadio4">10대 이하</label>
 						</div>
 						<div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio5" name="customRadio2" class="custom-control-input" value=2 name="age">
+						  <input type="radio" id="customRadio5" class="custom-control-input" value=2 name="age">
 						  <label class="custom-control-label" for="customRadio5">10대 ~ 60대</label>
 						</div>
 						<div class="custom-control custom-radio">
-						  <input type="radio" id="customRadio6" name="customRadio2" class="custom-control-input" value=3 name="age">
+						  <input type="radio" id="customRadio6" class="custom-control-input" value=3 name="age">
 						  <label class="custom-control-label" for="customRadio6">60대 이상</label>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">직함</label>
+                        <div class="custom-control custom-radio">
+						  <input type="radio" id="customRadio10" class="custom-control-input" value=0 name="rank">
+						  <label class="custom-control-label" for="customRadio10">관리자</label>
+						</div>
+                        <div class="custom-control custom-radio">
+						  <input type="radio" id="customRadio7" class="custom-control-input" value=1 name="rank">
+						  <label class="custom-control-label" for="customRadio7">크라우드워커</label>
+						</div>
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="customRadio8" class="custom-control-input" value=2 name="rank">
+						  <label class="custom-control-label" for="customRadio8">직원</label>
+						</div>
+						<div class="custom-control custom-radio">
+						  <input type="radio" id="customRadio9" class="custom-control-input" value=3 name="rank">
+						  <label class="custom-control-label" for="customRadio9">책임자</label>
 						</div>
                       </div>
                     </div>
@@ -179,167 +202,105 @@
                 <h6 class="heading-small text-muted mb-4">계정 권한 선택</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-12">
-                    	<div class="custom-control custom-radio custom-control-inline">
-                    		<input type="radio" id="rankselect1" name="rank" class="custom-control-input" value=1 checked>
-                    		<label class="custom-control-label" for="rankselect1">데이터 수집</label>
-                    	</div>
-                    	<div class="custom-control custom-radio custom-control-inline">
-                    		<input type="radio" id="rankselect2" name="rank" class="custom-control-input" value=2>
-                    		<label class="custom-control-label" for="rankselect2">데이터 검수</label>
-                    	</div>
-                    	<div class="custom-control custom-radio custom-control-inline">
-                    		<input type="radio" id="rankselect3" name="rank" class="custom-control-input" value=3>
-                    		<label class="custom-control-label" for="rankselect3">책임 및 관리</label>
+                    <div class="col-lg-4">
+                    	<div class="card">
+	                    	<div class="card-body">
+		                    	<div class="custom-control custom-radio custom-control-inline">
+		                    		<input type="radio" id="rankselect1" name="working" class="custom-control-input" value=1 checked>
+		                    		<label class="custom-control-label" for="rankselect1">데이터 수집</label>
+		                    	</div>
+		                    	<div class="mt-2 ml-5">
+		                    	수집할 데이터셋 0건
+		                    	</div>
+	                    	</div>
                     	</div>
                     </div>
+                    <div class="col-lg-4">
+                    	<div class="card">
+	                    	<div class="card-body">
+		                    	<div class="custom-control custom-radio custom-control-inline">
+		                    		<input type="radio" id="rankselect2" name="working" class="custom-control-input" value=2>
+		                    		<label class="custom-control-label" for="rankselect2">데이터 검수</label>
+		                    	</div>
+		                    	<div class="mt-2 ml-5">
+		                    	검수할 계정 0건
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="col-lg-4">
+                    	<div class="card">
+                    		<div class="card-body">
+		                    	<div class="custom-control custom-radio custom-control-inline">
+		                    		<input type="radio" id="rankselect3" name="working" class="custom-control-input" value=3>
+		                    		<label class="custom-control-label" for="rankselect3">책임 및 관리</label>
+		                    	</div>
+		                    	<div class="mt-2 ml-5">
+		                    	권한 0건
+		                    	</div>
+	                    	</div>
+                    	</div>
+                   	</div>
                   </div>
                 </div>
                     
               <hr class="my-4" />
               
               <div id="A">
-                <h6 class="heading-small text-muted mb-4">수집할 데이터 셋</h6>
+              	<h6 class="heading-small text-muted mb-4">수집할 데이터셋 추가</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-12">
-					<table class="table align-items-center">
-						<thead class="thead">
-							<tr>
-								<th scope="col" width="5%">데이터 번호</th>
-								<th scope="col" width="40%">소음환경</th>
-								<th scope="col" width="40%">대화주제</th>
-								<th scope="col" width="5%"></th>
-							</tr>
-						</thead>
-						<tbody class="list">
-						<tr>
-							<th scope="row">
-								6
-							</th>
-							<td class="budget">
-								1.가정 내 환경
-							</td>
-							<td>
-								주제1
-							</td>
-							<td>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								7
-							</th>
-							<td class="budget">
-								1.가정 내 환경
-							</td>
-							<td>
-								주제2
-							</td>
-							<td>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								8
-							</th>
-							<td class="budget">
-								1.가정 내 환경
-							</td>
-							<td>
-								주제3
-							</td>
-							<td>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								9
-							</th>
-							<td class="budget">
-								1.가정 내 환경
-							</td>
-							<td>
-								주제4
-							</td>
-							<td>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								10
-							</th>
-							<td class="budget">
-								1.가정 내 환경
-							</td>
-							<td>
-								주제5
-							</td>
-							<td>
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-                     </div>
-                  </div>
-                </div>
-                
-                <hr class="my-4" />
-                
-                <h6 class="heading-small text-muted mb-4">데이터셋 추가</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-7">
+	                  <div class="col-lg-5">
+							<table class="table align-items-center">
+								<thead class="thead">
+									<tr>
+										<th scope="col" width="50%">소음환경</th>
+										<th scope="col" width="45%">대화주제</th>
+										<th scope="col" width="5%"></th>
+									</tr>
+								</thead>
+								<tbody class="datasetlist">
+								
+								</tbody>
+							</table>
+	                     </div>
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">소음환경</label>
-                        <select multiple class="form-control" id="exampleFormControlSelect2">
-						  <option>1.가정 내 소음</option>
-						  <option>2.야외활동환경 (실내/실외)</option>
-						  <option>3.야외활동환경 (실내/실외)</option>
-						  <option>4.야외활동환경 (실내)</option>
-						  <option>5.야외활동환경 (실내)</option>
-						  <option>6.야외활동환경 (실외)</option>
-						  <option>7.야외활동환경 (실외)</option>
-						  <option>8.사무환경</option>
-						  <option>9.특수환경</option>
-						  <option>10.특수환경</option>
-						  <option>11.특수환경</option>
+                        <select multiple class="form-control" id="WorkingDataSet1">
+						  <option value=1>1.가정 내 소음</option>
+						  <option value=2>2.야외활동환경 (실내/실외)</option>
+						  <option value=3>3.야외활동환경 (실내/실외)</option>
+						  <option value=4>4.야외활동환경 (실내)</option>
+						  <option value=5>5.야외활동환경 (실내)</option>
+						  <option value=6>6.야외활동환경 (실외)</option>
+						  <option value=7>7.야외활동환경 (실외)</option>
+						  <option value=8>8.사무환경</option>
+						  <option value=9>9.특수환경</option>
+						  <option value=10>10.특수환경</option>
+						  <option value=11>11.특수환경</option>
 						</select>
                       </div>
                     </div>
-					<div class="col-lg-5">
+					<div class="col-lg-3">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">대화주제</label>
-                        <select multiple class="form-control" id="exampleFormControlSelect2">
-						  <option>주제1</option>
-						  <option>주제2</option>
-						  <option>주제3</option>
-						  <option>주제4</option>
-						  <option>주제5</option>
+                        <select multiple class="form-control" id="WorkingDataSet2">
+						  <option value=1>주제1</option>
+						  <option value=2>주제2</option>
+						  <option value=3>주제3</option>
+						  <option value=4>주제4</option>
+						  <option value=5>주제5</option>
 						</select>
                       </div>
                     </div>
+                    
                   </div>
 				  	<div class="row">
-						<div class="col-lg-10">
+						<div class="col-lg-11">
 						</div>
-						<div class="col-lg-2">
-							<button type="button" class="btn btn-outline-warning">추가</button>
+						<div class="col-lg-1">
+							<button type="button" class="btn btn-outline-warning" onclick="WorkingDataSetAdd();">추가</button>
 						</div>
 					</div>
                 </div>
@@ -353,33 +314,54 @@
 					<table class="table align-items-center">
 						<thead class="thead">
 							<tr>
-								<th scope="col" width="5%">계정 번호</th>
-								<th scope="col" width="30%">이름</th>
-								<th scope="col" width="30%">성별</th>
-								<th scope="col" width="30%">연령대</th>
-								<th scope="col" width="5%"></th>
+								<th scope="col" width="10%">계정 번호</th>
+								<th scope="col" width="20%">직함</th>
+								<th scope="col" width="20%">이름</th>
+								<th scope="col" width="20%">성별</th>
+								<th scope="col" width="20%">연령대</th>
+								<th scope="col" width="10%"></th>
 							</tr>
 						</thead>
-						<tbody class="list">
+						<tbody class="userlist">
+						<c:forEach var="vo" items="${usersList }">
 						<tr>
-							<th scope="row">
-								6
-							</th>
-							<td class="budget">
-								이길동
+							<td>
+							  ${vo.sno }
 							</td>
 							<td>
-								남자
+								<c:choose>
+								<c:when test="${vo.rank ==0 }">관리자</c:when>
+								<c:when test="${vo.rank ==1 }">크라우드워커</c:when>
+								<c:when test="${vo.rank ==2 }">직원</c:when>
+								<c:when test="${vo.rank ==3 }">책임자</c:when>
+								</c:choose>
+							</td>
+							
+							<td>
+							  ${vo.name }
 							</td>
 							<td>
-								10~60
+								<c:choose>
+								<c:when test="${vo.gender ==1 }">남자</c:when>
+								<c:when test="${vo.gender ==2 }">여자</c:when>
+								</c:choose>
 							</td>
 							<td>
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="usersCheck1">
-							</div>
+								<c:choose>
+								<c:when test="${vo.age ==1 }">10대 이하</c:when>
+								<c:when test="${vo.age ==2 }">10대~60대</c:when>
+								<c:when test="${vo.age ==3 }">60대 이상</c:when>
+								</c:choose>
+							</td>
+							<td style="vertical-align:middle">
+								<div class="form-check">
+								  <input class="form-check-input" type="checkbox" value="" id="usersCheck">
+								  <label class="form-check-label" for="usersCheck">
+								  </label>
+								</div>
 							</td>
 						</tr>
+						</c:forEach>
 						</tbody>
 					</table>
                      </div>
@@ -456,7 +438,11 @@
 	</div>
 		
 <script>
-$('input[type=radio][name=rank]').on('click',function(){
+var dataSetValue = 0;
+var checkIdValue = 0;
+var actionValue = 0;
+
+$('input[type=radio][name=working]').on('click',function(){
 	$('#A').css('display', 'none');
 	$('#B').css('display', 'none');
 	$('#C').css('display', 'none');
@@ -469,6 +455,84 @@ $('input[type=radio][name=rank]').on('click',function(){
 		$('#C').css('display', 'block');
 	}
 });
+
+var WorkingDataSetAdd = function() {
+	var WorkingDataSet1 = $('#WorkingDataSet1 option:selected').val();
+	var WorkingDataSet2 = $('#WorkingDataSet2 option:selected').val();
+	var WorkingDataSetName1 = '';
+	var WorkingDataSetName2 = '';
+	var compareWorkingDataSet = String(WorkingDataSet1) + String(WorkingDataSet2);
+	var flag = false;
+	
+	$("input[name=compareWorkingDataSet]").each(function(index, item){
+		if ($(item).attr("value") == compareWorkingDataSet) {
+			flag  = true;
+			return false;
+		}
+	});
+	
+	if (flag == true) {
+		alert("중복된 항목이 존재합니다.");
+		return;
+	}
+	if (WorkingDataSet1 == null) {
+		alert("소음환경을 선택해주세요.");
+		$('#WorkingDataSet1').focus();
+		return;
+	} else {
+		switch(WorkingDataSet1){
+		case "1": WorkingDataSetName1 = '1.가정 내 환경'; break;
+		case "2": WorkingDataSetName1 = '2.야외활동환경 (실내/실외)'; break;
+		case "3": WorkingDataSetName1 = '3.야외활동환경 (실내/실외)'; break;
+		case "4": WorkingDataSetName1 = '4.야외활동환경 (실내)'; break;
+		case "5": WorkingDataSetName1 = '5.야외활동환경 (실내)'; break;
+		case "6": WorkingDataSetName1 = '6.야외활동환경 (실외)'; break;
+		case "7": WorkingDataSetName1 = '7.야외활동환경 (실외)'; break;
+		case "8": WorkingDataSetName1 = '8.사무환경'; break;
+		case "9": WorkingDataSetName1 = '9.특수환경'; break;
+		case "10": WorkingDataSetName1 = '10.특수환경'; break;
+		case "11": WorkingDataSetName1 = '11.특수환경'; break;
+		}
+	}
+	if (WorkingDataSet2 == null) {
+		alert("주제를 선택해주세요.");
+		$('#WorkingDataSet2').focus();
+		return;
+	} else {
+		switch(WorkingDataSet2){
+		case "1": WorkingDataSetName2 = '주제1'; break;
+		case "2": WorkingDataSetName2 = '주제2'; break;
+		case "3": WorkingDataSetName2 = '주제3'; break;
+		case "4": WorkingDataSetName2 = '주제4'; break;
+		case "5": WorkingDataSetName2 = '주제5'; break;
+		}
+	}
+	
+	var html = '';
+	
+	html += '<tr>';
+	html += '<td>'+WorkingDataSetName1+'<input type="hidden" name="WorkingDataSet1" value="'+WorkingDataSet1+'"></td>';
+	html += '<td>'+WorkingDataSetName2+'<input type="hidden" name="WorkingDataSet2" value="'+WorkingDataSet2+'">';
+	html += '<input type="hidden" name="compareWorkingDataSet" value="'+String(WorkingDataSet1)+String(WorkingDataSet2)+'"></td>';
+	html += '<td><button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="deleteDataset(this);">';
+	html += '<span aria-hidden="true">&times;</span></button></td></tr>';
+	$('.datasetlist').append(html);
+}
+
+var deleteDataset = function(id) {
+	var tr = $(id).closest('tr');
+	tr.remove();
+	fnDataSetValue(false);
+}
+
+var fnDataSetValue = function(sign) {
+	var = 
+	if (sign == true) {
+		
+	} else {
+		
+	}
+}
 
 </script>
 <!-- FOOTER==================================== -->	

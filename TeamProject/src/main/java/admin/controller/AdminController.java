@@ -27,10 +27,42 @@ public class AdminController {
 	
 	@RequestMapping(value="userList.do")
 	public ModelAndView userList(HttpServletRequest request) {
+		String str_pg = request.getParameter("pg");
 		int pg = 1;
+		if (str_pg != null) {
+			if (!str_pg.equals("")) {
+				if (str_pg.matches("^[0-9]*$")) {
+					pg = Integer.parseInt(str_pg);
+				}
+			}
+		}
 		int endNum = pg * 10;
 		int startNum = endNum - 9;
 		List<usersDTO> usersList = service.getusersList(startNum, endNum);
+		int totalA = service.getUserTotal();  
+		int totalP = (totalA + 9) / 10;
+		
+		int startPage = (pg-1)/3*3 + 1;
+		int endPage = startPage + 2;
+		if(endPage > totalP) endPage = totalP;
+		
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("pg",pg);
+		mv.addObject("nav", "userList");
+		mv.addObject("usersList",usersList);
+		mv.addObject("totalP",totalP);
+		mv.addObject("startPage",startPage);
+		mv.addObject("endPage",endPage);
+		mv.setViewName("userList.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="userUpload.do")
+	public ModelAndView userUpload(HttpServletRequest request) {
+		int pg = 1;
+		int endNum = pg * 10;
+		int startNum = endNum - 9;
+		List<usersDTO> usersList = service.getusersList();
 		int totalA = service.getUserTotal();  
 		int totalP = (totalA + 9) / 10;
 		
@@ -45,7 +77,7 @@ public class AdminController {
 		mv.addObject("totalP",totalP);
 		mv.addObject("startPage",startPage);
 		mv.addObject("endPage",endPage);
-		mv.setViewName("userList.jsp");
+		mv.setViewName("userInsert.jsp");
 		return mv;
 	}
 	

@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from (select * from users) tt, (SELECT @rownum:=0) R order by rank desc) cc where rn>=#{startNum} and rn<=#{endNum}]]>
 	</select>
 	
+	<select id="getallusersList" resultType="usersDTO">
+		select * from users order by rank
+	</select>
+	
 	<select id="getUserTotal" resultType="int" parameterType="String">
 		select count(*) as cnt from users
 	</select>

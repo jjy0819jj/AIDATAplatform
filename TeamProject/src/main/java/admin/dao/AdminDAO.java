@@ -16,11 +16,8 @@ public class AdminDAO {
 	@Autowired
     private SqlSessionTemplate sqlSession;
 
-	public List<usersDTO> getusersList(int startNum, int endNum) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("startNum", startNum);
-		map.put("endNum", endNum);
-		return sqlSession.selectList("admin.getusersList", map);
+	public List<usersDTO> getusersList() {
+		return sqlSession.selectList("admin.getallusersList");
 	}
 
 	public int getUserTotal() {
@@ -29,6 +26,13 @@ public class AdminDAO {
 
 	public usersDTO getuserInfo(int sno) {
 		return sqlSession.selectOne("getuserInfo", sno);
+	}
+
+	public List<usersDTO> getusersList(int startNum, int endNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		return sqlSession.selectList("admin.getusersList", map);
 	}
 	
 }
